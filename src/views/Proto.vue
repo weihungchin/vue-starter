@@ -137,7 +137,7 @@
       <v-container fluid fill-height class = "pa-0">
         <div v-bind:class = "{'side-list-wrapper':$vuetify.breakpoint.mdAndUp, 'full-side-list-wrapper':$vuetify.breakpoint.smAndDown}">
          
-            <v-card flat class="blue-grey--text border-bottom" height = "100" v-for = "card in sideCards" :key = "card.name">
+            <v-card flat class="blue-grey--text border-bottom" height = "100" v-for = "card in allApplicantProfile" :key = "card.name">
                <v-layout row align-content-center>
                 <v-flex xs2>
                    <v-avatar
@@ -250,7 +250,24 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
+  watch: {
+    applicantProfileList() {
+      console.log("watch");
+    }
+  },
+  computed: {
+    applicantProfileList: function() {
+      console.log(this.$store.getters.applicantProfileList);
+      return this.$store.getters.applicantProfileList;
+    },
+    ...mapGetters(["allApplicantProfile"])
+  },
+  created: function() {
+    this.$store.dispatch("getFirebaseDatabase");
+  },
   data: () => ({
     lightTheme: true,
     drawer: false,
