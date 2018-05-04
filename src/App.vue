@@ -9,6 +9,12 @@
 </template>
 
 <style lang="scss">
+html,
+body,
+#app {
+  height: 100%;
+  overflow-y: auto;
+}
 // #app {
 //   font-family: "Avenir", Helvetica, Arial, sans-serif;
 //   -webkit-font-smoothing: antialiased;
